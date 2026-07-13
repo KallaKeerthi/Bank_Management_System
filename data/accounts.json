@@ -1,0 +1,92 @@
+{
+    "10001": {
+        "account_number": 10001,
+        "first_name": "Keerthi",
+        "last_name": "Kalla",
+        "age": 21,
+        "phone": "9849144752",
+        "address": "B.Kothuru, Pithapuram Mandal",
+        "pin": "483029d526219f816e8e8f6a9de07b422633dba180ffc26faac22862a017519f",
+        "balance": 30000,
+        "history": [
+            {
+                "date": "13-07-2026 23:19:18",
+                "type": "Withdraw",
+                "amount": 5000,
+                "balance": 10000
+            },
+            {
+                "date": "13-07-2026 23:19:18",
+                "type": "Transfer to 10002",
+                "amount": 5000,
+                "balance": 10000
+            },
+            {
+                "date": "13-07-2026 23:19:55",
+                "type": "Deposit",
+                "amount": 20000,
+                "balance": 30000
+            },
+            {
+                "date": "13-07-2026 23:19:55",
+                "type": "Received from 10003",
+                "amount": 20000,
+                "balance": 30000
+            }
+        ]
+    },
+    "10002": {
+        "account_number": 10002,
+        "first_name": "Sowmya",
+        "last_name": "Kalla",
+        "age": 22,
+        "phone": "47247281466",
+        "address": "Someswaram, Rayavaram Mandal",
+        "pin": "77459b9b941bcb4714d0c121313c900ecf30541d158eb2b9b178cdb8eca6457e",
+        "balance": 25000,
+        "history": [
+            {
+                "date": "13-07-2026 23:19:18",
+                "type": "Deposit",
+                "amount": 5000,
+                "balance": 25000
+            },
+            {
+                "date": "13-07-2026 23:19:18",
+                "type": "Received from 10001",
+                "amount": 5000,
+                "balance": 25000
+            }
+        ]
+    },
+    "10003": {
+        "account_number": 10003,
+        "first_name": "BLN",
+        "last_name": "Boley",
+        "age": 35,
+        "phone": "96760020296",
+        "address": "Rajahmundry",
+        "pin": "e78f27ab3ef177a9926e6b90e572b9853ce6cf4d87512836e9ae85807ec9d7fe",
+        "balance": 60000,
+        "history": [
+            {
+                "date": "13-07-2026 23:19:55",
+                "type": "Withdraw",
+                "amount": 20000,
+                "balance": 30000
+            },
+            {
+                "date": "13-07-2026 23:19:55",
+                "type": "Transfer to 10001",
+                "amount": 20000,
+                "balance": 30000
+            },
+            {
+                "date": "13-07-2026 23:20:14",
+                "type": "Deposit",
+                "amount": 30000,
+                "balance": 60000
+            }
+        ]
+    }
+}
