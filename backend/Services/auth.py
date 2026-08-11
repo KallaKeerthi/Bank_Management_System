@@ -23,9 +23,7 @@ class Authentication:
         self.admin = admin
         self.bank = bank
         
-    def admin_login(self):
-        username = input("Enter username: ")
-        password = input("Enter password: ")
+    def admin_login(self, username, password):
         
         if self.admin.username == username and self.admin.verify_password(password):
             return self.admin
@@ -33,13 +31,11 @@ class Authentication:
             return None
             
     
-    def customer_login(self):
-        account_number = int(input("Enter Account Number: "))
+    def customer_login(self, account_number, pin_number):
         
         account = self.bank.search_account(account_number)
         
         if account:
-            pin_number = int(input("Enter PIN: "))
             if account.verify_pin(pin_number):
                 return account
         return None

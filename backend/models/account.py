@@ -30,14 +30,17 @@ from datetime import datetime
 import hashlib
 
 class Account:
-    def __init__(self, account_number, first_name, last_name, age, phone, address, pin, balance, history = None):
+    def __init__(self, account_number, first_name, last_name, age, phone, address, pin, balance, history = None, pin_hashed=False):
         self.account_number = account_number
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
         self.phone = phone
         self.address = address
-        self.__pin = hashlib.sha256(str(pin).encode()).hexdigest()
+        if pin_hashed:
+            self.__pin = pin
+        else:
+            self.__pin = hashlib.sha256(str(pin).encode()).hexdigest()
         self.balance = balance
         if history is None:
             self.history = []
@@ -56,6 +59,18 @@ class Account:
             "balance": self.balance,
             "history": self.history
         }
+        
+    def to_public_dict(self):
+            return {
+                "account_number": self.account_number,
+                "first_name": self.first_name,
+                "last_name": self.last_name,
+                "age": self.age,
+                "phone": self.phone,
+                "address": self.address,
+                "balance": self.balance,
+                "history": self.history
+            }
         
     def add_transaction(self, transaction_type, amount):
         self.history.append({
@@ -81,27 +96,33 @@ class Account:
     
     
     def transfer(self, receiver, amount):
-        if amount > 0 and self.account_number != receiver.account_number:
-            if self.withdraw(amount):
-                self.history.append({
-                    "date": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
-                    "type": f"Transfer to {receiver.account_number}",
-                    "amount": amount,
-                    "balance": self.balance
-                })
+        if amount <= 0:
+            return False
 
-                receiver.deposit(amount)
+        if self.account_number == receiver.account_number:
+            return False
 
-                receiver.history.append({
-                    "date": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
-                    "type": f"Received from {self.account_number}",
-                    "amount": amount,
-                    "balance": receiver.balance
-                })
+        if self.balance < amount:
+            return False
 
-                return True
-        return False
-    
+        # Update balances directly
+        self.balance -= amount
+        receiver.balance += amount
+
+        # Sender transaction
+        self.add_transaction(
+            f"Transfer to {receiver.account_number}",
+            amount
+        )
+
+        # Receiver transaction
+        receiver.add_transaction(
+            f"Received from {self.account_number}",
+            amount
+        )
+
+        return True
+
     def view_transaction_history(self):
         if not self.history:
             print("No transactions found.")
