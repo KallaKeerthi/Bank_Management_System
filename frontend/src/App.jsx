@@ -15,7 +15,7 @@ import AccountDetails from "./pages/admin/AccountDetails";
 
 import CustomerDashboard from "./pages/customer/Dashboard";
 import Deposit from "./pages/customer/Deposit";
-import Withdraw from "./pages/customer/Withdraw";
+import Withdraw from "./pages/customer/WithDraw";
 import Transfer from "./pages/customer/Transfer";
 import ChangePin from "./pages/customer/ChangePin";
 import History from "./pages/customer/History";
